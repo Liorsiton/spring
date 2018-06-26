@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<bean id="actor1" class="com.spring.course.imdb.actors.Actor">
+			<property name="id" value="123"/>		
+			<property name="name" value="Gila Almagor"/>
+			<property name="age" value="75"/>
+			<property name="gender" value="FEMALE"/>
+		</bean>
+	<bean id="actor2" class="com.spring.course.imdb.actors.Actor">
+			<property name="id" value="456"/>		
+			<property name="name" value="Moni Moshonov"/>
+			<property name="age" value="70"/>
+			<property name="gender" value="MALE"/>
+		</bean>
+		<bean id="movie1" class="com.spring.course.imdb.movies.Movie">
+			<constructor-arg name="id" value="111"/> 
+			<constructor-arg name="name" value="Armagadon"/> 
+			<constructor-arg name="genere" value="ACTION"/>
+			<property name="actors">
+				<util:list>
+					<ref bean="actor1"/>
+					<ref bean="actor2"/>
+				</util:list>			
+			</property> 
+		</bean>
+		
+		<bean id="movie2" class="com.spring.course.imdb.movies.Movie">
+			<constructor-arg name="id" value="222"/> 
+			<constructor-arg name="name" value="Lorel and Hardy"/> 
+			<constructor-arg name="genere" value="COMEDY"/>
+			<property name="actors">
+				<util:list>
+					<ref bean="actor1"/>
+					<ref bean="actor2"/>
+				</util:list>			
+			</property> 
+		</bean>
+			<util:map id= "movies">
+				<entry>
+					<key>
+					<value>135</value>
+					</key>
+					<ref bean="movie1"/>
+				</entry>
+				<entry>
+					<key>
+					<value>145</value>
+					</key>
+					<ref bean="movie2"/>				
+				</entry>			
+		</util:map>	
+		
+		<bean id ="movieDao1" class ="com.spring.course.imdb.movies.dao.MovieDao">
+		<constructor-arg name="movies" ref="movies"/>
+		</bean>
+			
+			
+	<!--		
+		<property name="mainActor" ref="actor1"/> 
+		<property name="secondaryActor" ref="actor2"/>	
+	-->		
+		
+		
+		<!--
+		
+		<bean id="movie2" class="com.spring.course.imdb.movies.Movie">
+			<constructor-arg name="id" value="222"/> 
+			<constructor-arg name="name" value="Lorel and Hardy"/> 
+			<constructor-arg name="genere" value="COMEDY"/> 
+			<property name="mainActor" ref="actor2"/>
+			<property name="secondaryActor" ref="actor1"/>			
+		</bean>
+	-->		
+
+</beans>
