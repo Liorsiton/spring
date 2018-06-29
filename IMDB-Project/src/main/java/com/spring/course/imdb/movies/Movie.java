@@ -13,15 +13,16 @@ public class Movie {
 	private String name;
 	private GENERE genere;
 	private List<Actor> actors = new ArrayList<>();
-	//private Actor mainActor;
-	//private Actor secondaryActor;
+	private int rating;
 	
 	
-	public Movie(int id, String name, GENERE genere) {
+	
+	public Movie(int id, String name, GENERE genere , int rating) {
 		
 		this.id = id;
 		this.name = name;
 		this.genere = genere;
+		this.rating = rating;
 	}
 
 
@@ -66,6 +67,21 @@ public class Movie {
 			return false;
 		return true;
 	}
+
+
+	public int getRating() {
+		return rating;
+	}
+
+
+	
+	
+	
+
+
+	
+	
+	
 	
 	
 	

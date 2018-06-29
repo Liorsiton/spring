@@ -1,11 +1,14 @@
 package com.spring.course.imdb.actors;
 
+import com.spring.course.imdb.ego.EgoMetrics;
+
 public class Actor {
 	
 	private int id;
 	private String name;
 	private int age;
 	private GENDER gender;
+	private EgoMetrics egoMetrics;
 	
 	
 	
@@ -33,12 +36,20 @@ public class Actor {
 	}
 	public void setGender(GENDER gender) {
 		this.gender = gender;
+	}		
+	
+	public void setEgoMetrics(EgoMetrics egoMetrics) {
+		this.egoMetrics = egoMetrics;
+	}	
+	
+	public EgoMetrics getEgoMetrics() {
+		return egoMetrics;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "Actor [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + "]";
+		return "Actor [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", egoMetric" + egoMetrics + "]";
 	}
 	@Override
 	public int hashCode() {

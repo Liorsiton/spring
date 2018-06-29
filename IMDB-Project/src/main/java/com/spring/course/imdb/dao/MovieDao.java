@@ -1,4 +1,4 @@
-package com.spring.course.imdb.movies.dao;
+package com.spring.course.imdb.dao;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +13,18 @@ public class MovieDao {
 	public MovieDao(Map<Integer,Movie> movies){
 		this.movies = movies;
 	}
+	
+	
+	public Map<Integer, Movie> getMovies() {
+		return movies;
+	}
+
+
+	public void setMovies(Map<Integer, Movie> movies) {
+		this.movies = movies;
+	}
+
+
 
 
 	@Override
