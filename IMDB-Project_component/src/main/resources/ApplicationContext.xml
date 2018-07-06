@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+        
+        <bean id="egoMetrics1" class="com.spring.course.imdb.ego.EgoMetrics"		
+		 scope="prototype">
+		</bean>
+	
+	<bean id="actor1" class="com.spring.course.imdb.actors.Actor">
+			<property name="id" value="123"/>		
+			<property name="name" value="Gila Almagor"/>
+			<property name="age" value="75"/>
+			<property name="gender" value="FEMALE"/>
+			<property name="egoMetrics" ref="egoMetrics1"/>
+		</bean>
+	<bean id="actor2" class="com.spring.course.imdb.actors.Actor">
+			<property name="id" value="456"/>		
+			<property name="name" value="Moni Moshonov"/>
+			<property name="age" value="70"/>
+			<property name="gender" value="MALE"/>
+		</bean>
+		<bean id="movie1" class="com.spring.course.imdb.movies.Movie">
+			<constructor-arg name="id" value="111"/> 
+			<constructor-arg name="name" value="Armagadon"/> 
+			<constructor-arg name="genere" value="ACTION"/>
+			<property name="actors">
+				<util:list>
+					<ref bean="actor1"/>
+					<ref bean="actor2"/>
+				</util:list>			
+			</property>
+			<constructor-arg name="rating" value="56"/>			
+		</bean>
+		
+		<bean id="movie2" class="com.spring.course.imdb.movies.Movie">
+			<constructor-arg name="id" value="222"/> 
+			<constructor-arg name="name" value="Lorel and Hardy"/> 
+			<constructor-arg name="genere" value="COMEDY"/>
+			<property name="actors">
+				<util:list>
+					<ref bean="actor1"/>
+					<ref bean="actor2"/>
+				</util:list>			
+			</property> 
+			<constructor-arg name="rating" value="78"/>	
+			
+		</bean>
+			<util:map id= "movies">
+				<entry>
+					<key>
+					<value>135</value>
+					</key>
+					<ref bean="movie1"/>
+				</entry>
+				<entry>
+					<key>
+					<value>145</value>
+					</key>
+					<ref bean="movie2"/>				
+				</entry>			
+		</util:map>	
+				
+		
+		<util:map id= "actors">
+				<entry>
+					<key>
+					<value>567</value>
+					</key>
+					<ref bean="actor1"/>
+				</entry>
+				<entry>
+					<key>
+					<value>568</value>
+					</key>
+					<ref bean="actor2"/>				
+				</entry>
+		</util:map>	
+		
+		<bean id ="movieDao1" class ="com.spring.course.imdb.dao.MovieDao">
+		<constructor-arg name="movies" ref="movies"/>
+		</bean>
+		
+		<bean id ="actorDao1" class ="com.spring.course.imdb.dao.ActorsDao">
+		<constructor-arg name="actors" ref="actors"/>
+		</bean>
+		
+		<bean id="IMDBServiceFactory" 
+			class = "com.spring.course.imdb.service.IMDBServiceFactory"
+			factory-method ="getInstnace">		
+		</bean>		
+		
+		<bean id="IMDBService" factory-bean="IMDBServiceFactory" 		
+		factory-method ="obtainService" autowire="constructor" lazy-init="true">
+		</bean>	
+		
+		<bean class = "org.springframework.context.annotation.CommonAnnotationBeanPostProcessor">
+		</bean>
+		
+		<bean class="com.spring.course.imdb.movies.MovieMapBeanPostProcessor">
+		</bean>
+
+		
+		
+		
+		
+			
+			
+
+</beans>
