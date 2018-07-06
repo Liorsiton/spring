@@ -97,8 +97,8 @@
 		</bean>	
 		
 		<bean class = "org.springframework.context.annotation.CommonAnnotationBeanPostProcessor">
-		
 		</bean>
+		
 		<bean class="com.spring.course.imdb.movies.MovieMapBeanPostProcessor">
 		</bean>
 
