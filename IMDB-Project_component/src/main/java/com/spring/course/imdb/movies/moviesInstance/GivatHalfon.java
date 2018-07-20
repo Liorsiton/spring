@@ -30,6 +30,7 @@ public class GivatHalfon extends Movie {
 		actors.add(gavri);
 		this.setActors(actors);
 		
+		
 	}
 	
 	

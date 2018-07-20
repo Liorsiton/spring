@@ -9,7 +9,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.spring.course.imdb.conf.MovieConfiguration;
+import com.spring.course.imdb.actors.Actor;
+import com.spring.course.imdb.actors.acrtorsInstance.Moni;
 import com.spring.course.imdb.dao.ActorsDao;
 import com.spring.course.imdb.dao.MovieDao;
 import com.spring.course.imdb.ego.EgoMetrics;
@@ -32,13 +33,12 @@ public class Main {
 		
 		 
 		 AnnotationConfigApplicationContext ctx =
-	                new AnnotationConfigApplicationContext(MovieConfiguration.class);
+	                new AnnotationConfigApplicationContext("com.spring.course.conf.SpringConfigFile");
 		 
 		 logger.debug("====   Starting main work   ====");
-		 Map<Integer, Movie> movieMap = ctx.getBean("moviesMap", Map.class);		 
-		 movieMap.forEach( (id, movie) -> {	           
-	            logger.info("movie with id {} and name {} has rating of {} and the actors are: {}", id,movie.getName() , movie.getRating(), movie.getActors());
-	        });
+		 Moni act = ctx.getBean("Moni", Moni.class);
+		 logger.debug(act.getName() + ", " + act.getAge() + " , "  + act.getGender());
+		
 
 		
 		 
